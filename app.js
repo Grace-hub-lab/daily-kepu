@@ -22,7 +22,14 @@
     favBtn: document.getElementById("favBtn"),
     quizToggle: document.getElementById("quizToggle"),
     revealBtn: document.getElementById("revealBtn"),
+    quote: document.getElementById("quote"),
   };
+
+  // 底部金句:每条考点固定配一句(按下标取,翻页跟着换)
+  function renderQuote(realIndex) {
+    if (!el.quote || typeof QUOTES === "undefined" || !QUOTES.length) return;
+    el.quote.textContent = QUOTES[realIndex % QUOTES.length];
+  }
 
   const ALL = "全部";
   const FAV = "★ 收藏";
@@ -111,6 +118,7 @@
     const isToday = current === todayIndex() && activeField === ALL;
     el.today.textContent = isToday ? "✓ 今日知识" : "回到今天";
 
+    renderQuote(current);
     applyQuizState(true); // 新条目在抽背模式下重新盖住
   }
 
@@ -143,6 +151,7 @@
     el.favBtn.classList.remove("active");
     el.counter.textContent = "收藏 第 0 / 0 条";
     el.today.textContent = "回到今天";
+    renderQuote(0);
     el.card.classList.remove("quiz", "revealed");
   }
 

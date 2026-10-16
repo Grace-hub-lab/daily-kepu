@@ -2,7 +2,7 @@
 // 作用:首次联网打开后,把所有资源缓存到本机;之后即使断网也能打开(加到桌面后像 App 一样秒开)。
 // 更新内容时,把 CACHE_VERSION 改一下(如 v1 -> v2),用户下次联网打开即自动更新缓存。
 
-const CACHE_VERSION = "kepu-v3";
+const CACHE_VERSION = "kepu-v4";
 
 // 要缓存的资源(用相对路径,适配任意部署目录)
 const ASSETS = [
