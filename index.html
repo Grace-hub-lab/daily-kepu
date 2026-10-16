@@ -73,10 +73,24 @@
   <script src="data.js"></script>
   <script src="app.js"></script>
   <script>
-    // 注册 service worker,实现离线可用(加到桌面后断网也能打开)
+    // 注册 service worker:离线可用 + 自动更新
+    // 发现新版本时让其立即接管,并自动刷新一次页面,保证每次打开都是最新内容。
     if ("serviceWorker" in navigator) {
+      var refreshing = false;
+      navigator.serviceWorker.addEventListener("controllerchange", function () {
+        if (refreshing) return;
+        refreshing = true;
+        window.location.reload();
+      });
       window.addEventListener("load", function () {
-        navigator.serviceWorker.register("sw.js").catch(function () {});
+        navigator.serviceWorker.register("sw.js").then(function (reg) {
+          // 打开时主动检查一次更新
+          reg.update();
+          // 每次页面重新可见时再查一次(从后台切回来也能拿到新版)
+          document.addEventListener("visibilitychange", function () {
+            if (document.visibilityState === "visible") reg.update();
+          });
+        }).catch(function () {});
       });
     }
   </script>
