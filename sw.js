@@ -2,7 +2,7 @@
 // 作用:首次联网打开后,把所有资源缓存到本机;之后即使断网也能打开(加到桌面后像 App 一样秒开)。
 // 更新内容时,把 CACHE_VERSION 改一下(如 v1 -> v2),用户下次联网打开即自动更新缓存。
 
-const CACHE_VERSION = "kepu-v2";
+const CACHE_VERSION = "kepu-v3";
 
 // 要缓存的资源(用相对路径,适配任意部署目录)
 const ASSETS = [
@@ -13,9 +13,9 @@ const ASSETS = [
   "./data.js",
   "./manifest.webmanifest",
   "./icon.svg",
-  "./icon-180.png",
-  "./icon-192.png",
-  "./icon-512.png",
+  "./icon-180-v2.png",
+  "./icon-192-v2.png",
+  "./icon-512-v2.png",
 ];
 
 // 安装:预缓存所有资源
