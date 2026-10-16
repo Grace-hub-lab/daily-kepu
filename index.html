@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+  <title>每日科普 · 考公常识</title>
+
+  <!-- PWA:可加到手机桌面 -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#6366f1" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="每日科普" />
+  <link rel="apple-touch-icon" href="icon-180.png" />
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <span class="logo">💡</span>
+        <span class="brand-name">每日科普</span>
+      </div>
+      <div class="date" id="date"></div>
+    </header>
+
+    <div class="filter-bar" id="filterBar"></div>
+
+    <div class="mode-row">
+      <label class="switch">
+        <input type="checkbox" id="quizToggle" />
+        <span class="switch-track"><span class="switch-thumb"></span></span>
+        <span class="switch-label">抽背模式</span>
+      </label>
+    </div>
+
+    <main class="card" id="card">
+      <button class="fav-btn" id="favBtn" title="收藏/取消收藏">☆</button>
+      <div class="illus" id="illus"></div>
+      <div class="content">
+        <span class="field-tag" id="field"></span>
+        <h1 class="title" id="title"></h1>
+        <div class="answer" id="answer">
+          <p class="body" id="body"></p>
+          <div class="fact">
+            <span class="fact-label">记忆点</span>
+            <span id="fact"></span>
+          </div>
+        </div>
+        <button class="reveal-btn" id="revealBtn">点击揭示答案</button>
+      </div>
+    </main>
+
+    <nav class="controls">
+      <button class="btn" id="prev" title="上一条">‹ 上一条</button>
+      <button class="btn btn-primary" id="today" title="回到今天">今日知识</button>
+      <button class="btn" id="random" title="随机一条">🎲 随机</button>
+      <button class="btn" id="next" title="下一条">下一条 ›</button>
+    </nav>
+
+    <footer class="foot">
+      <span id="counter"></span>
+      <span class="sep">·</span>
+      <span>共 100 条考点 · 左右滑动翻页</span>
+    </footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // 注册 service worker,实现离线可用(加到桌面后断网也能打开)
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

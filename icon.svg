@@ -1,0 +1,28 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+    <radialGradient id="bulb" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#fff7cc"/>
+      <stop offset="70%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- 灯泡:象征「知识/灵感」 -->
+  <circle cx="256" cy="212" r="104" fill="url(#bulb)"/>
+  <path d="M256 128 a84 84 0 0 0 -48 152 l0 24 l96 0 l0 -24 a84 84 0 0 0 -48 -152 z" fill="#fff7cc" opacity="0.35"/>
+  <rect x="214" y="300" width="84" height="20" rx="8" fill="#e5e7eb"/>
+  <rect x="222" y="322" width="68" height="18" rx="8" fill="#cbd5e1"/>
+  <path d="M234 342 q22 20 44 0" fill="none" stroke="#9ca3af" stroke-width="12" stroke-linecap="round"/>
+  <!-- 光芒 -->
+  <g stroke="#ffe08a" stroke-width="14" stroke-linecap="round">
+    <line x1="256" y1="60" x2="256" y2="92"/>
+    <line x1="128" y1="212" x2="96" y2="212"/>
+    <line x1="384" y1="212" x2="416" y2="212"/>
+    <line x1="150" y1="106" x2="128" y2="84"/>
+    <line x1="362" y1="106" x2="384" y2="84"/>
+  </g>
+</svg>
