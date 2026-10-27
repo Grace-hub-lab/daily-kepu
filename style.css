@@ -40,7 +40,9 @@ body {
 .app {
   width: 100%;
   max-width: 560px;
+  min-width: 0; /* 允许收缩,防止一行筛选栏把页面撑宽 */
 }
+.filter-bar, .sub-bar { max-width: 100%; }
 
 /* 顶部 */
 .top {
@@ -54,16 +56,46 @@ body {
 .logo { font-size: 24px; }
 .brand-name { font-size: 18px; font-weight: 700; letter-spacing: 1px; }
 .date { font-size: 14px; color: var(--ink-soft); }
+.top-right { display: flex; align-items: center; gap: 10px; }
 
-/* 领域筛选栏 */
-.filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
-  padding: 0 2px;
+/* 设置按钮 */
+.icon-btn {
+  border: none;
+  background: #ffffff;
+  color: var(--ink-soft);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 3px 10px -5px rgba(31, 41, 55, 0.35);
+  transition: transform 0.15s ease;
 }
+.icon-btn:hover { transform: rotate(30deg); }
+.icon-btn:focus-visible, .chip:focus-visible, .btn:focus-visible {
+  outline: 3px solid #a5b4fc;
+  outline-offset: 2px;
+}
+
+/* 板块筛选栏:一行,可左右滑动 */
+.filter-bar, .sub-bar {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 2px 8px;
+  margin-bottom: 8px;
+}
+.filter-bar::-webkit-scrollbar, .sub-bar::-webkit-scrollbar { display: none; }
+.sub-bar { margin-top: -2px; padding-top: 2px; }
+.sub-bar[hidden] { display: none; }
 .chip {
+  flex: none;
+  white-space: nowrap;
   border: none;
   background: #ffffff;
   color: var(--ink-soft);
@@ -75,6 +107,58 @@ body {
   box-shadow: 0 3px 10px -5px rgba(31, 41, 55, 0.3);
   transition: all 0.15s ease;
 }
+/* 二级小类:更小、更浅 */
+.chip-sm {
+  font-size: 12px;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+  border: 1px solid #e0e7ff;
+}
+.chip-sm.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: #a5b4fc;
+  box-shadow: none;
+}
+
+/* 设置面板 */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(17, 24, 39, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal[hidden] { display: none; }
+.modal-box {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 22px 20px 18px;
+  box-shadow: var(--shadow);
+  animation: rise 0.25s ease;
+}
+.modal-title { font-size: 17px; margin-bottom: 14px; }
+.pref-list { display: flex; flex-direction: column; gap: 8px; }
+.pref-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f8fafc;
+  font-size: 15px;
+  cursor: pointer;
+}
+.pref-item input { width: 18px; height: 18px; accent-color: var(--accent); }
+.pref-count { margin-left: auto; font-size: 13px; color: var(--muted); }
+.modal-tip { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 12px 2px 14px; }
+.modal-done { width: 100%; }
 .chip:hover { transform: translateY(-1px); }
 .chip.active {
   background: var(--accent);
@@ -305,6 +389,7 @@ body {
   .date { font-size: 13px; }
 
   .chip { font-size: 14px; padding: 9px 16px; }
+  .chip-sm { font-size: 13px; padding: 6px 13px; }
 
   .switch { font-size: 14px; }
   .switch-track { width: 46px; height: 26px; }
