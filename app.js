@@ -114,6 +114,7 @@
 
   // ---------- 渲染 ----------
   function renderIllus(item) {
+    if (!el.illus) return; // 卡片已不再显示配图
     el.illus.innerHTML =
       (typeof FIELD_ICONS !== "undefined" && FIELD_ICONS[item.field]) || item.svg || "";
   }

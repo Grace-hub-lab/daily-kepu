@@ -2,7 +2,7 @@
 // 策略:联网时优先取最新文件(并更新缓存),断网时才用缓存。这样每次更新内容,手机打开就能看到。
 // 更新内容时,把 CACHE_VERSION 改一下(如 v1 -> v2),确保新版本被安装。
 
-const CACHE_VERSION = "kepu-v13";
+const CACHE_VERSION = "kepu-v14";
 
 // 要缓存的资源(用相对路径,适配任意部署目录)
 const ASSETS = [

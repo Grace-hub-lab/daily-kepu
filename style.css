@@ -408,11 +408,8 @@ body {
 
   .fav-btn { width: 46px; height: 46px; font-size: 26px; top: 12px; right: 12px; }
 
-  .illus { padding: 30px 0; }
-  .illus svg { width: 150px; height: 150px; }
-
   .content { padding: 22px 22px 26px; }
-  .field-tag { font-size: 14px; }
+  .field-tag { font-size: 14px; margin-bottom: 16px; }
   .title { font-size: 22px; line-height: 1.45; }
   .body { font-size: 17px; line-height: 1.9; }
   .fact { font-size: 15px; line-height: 1.75; }
