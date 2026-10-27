@@ -26,6 +26,7 @@
     revealBtn: document.getElementById("revealBtn"),
     quote: document.getElementById("quote"),
     settingsBtn: document.getElementById("settingsBtn"),
+    favViewBtn: document.getElementById("favViewBtn"),
     settings: document.getElementById("settings"),
     prefList: document.getElementById("prefList"),
     settingsDone: document.getElementById("settingsDone"),
@@ -79,7 +80,7 @@
   }
   function formatDate(date) {
     const week = ["日", "一", "二", "三", "四", "五", "六"];
-    return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 星期${week[date.getDay()]}`;
+    return `${date.getMonth() + 1}月${date.getDate()}日 星期${week[date.getDay()]}`;
   }
 
   // ---------- 下标池 ----------
@@ -210,10 +211,14 @@
 
   function renderFilterBar() {
     el.filterBar.innerHTML = "";
-    [ALL, ...GROUPS, FAV].forEach((g) => {
+    [ALL, ...GROUPS].forEach((g) => {
       const chip = makeChip(g, view.group === g, () => setView(g, null));
       el.filterBar.appendChild(chip);
     });
+    // 收藏入口在右上角星星按钮
+    const favOn = view.group === FAV;
+    el.favViewBtn.classList.toggle("active", favOn);
+    el.favViewBtn.setAttribute("aria-pressed", String(favOn));
     // 把当前选中的标签滚到可见位置
     const active = el.filterBar.querySelector(".chip.active");
     if (active) {
@@ -315,6 +320,10 @@
   el.revealBtn.addEventListener("click", () => el.card.classList.add("revealed"));
 
   el.settingsBtn.addEventListener("click", openSettings);
+  // 星星按钮:进入收藏;再点一次回到全部
+  el.favViewBtn.addEventListener("click", () =>
+    view.group === FAV ? setView(ALL, null) : setView(FAV, null)
+  );
   el.settingsDone.addEventListener("click", closeSettings);
   el.settings.addEventListener("click", (e) => {
     if (e.target === el.settings) closeSettings(); // 点遮罩关闭

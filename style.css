@@ -73,6 +73,9 @@ body {
   transition: transform 0.15s ease;
 }
 .icon-btn:hover { transform: rotate(30deg); }
+#favViewBtn { color: #f59e0b; }
+#favViewBtn:hover { transform: scale(1.1); }
+#favViewBtn.active { background: #f59e0b; color: #fff; }
 .icon-btn:focus-visible, .chip:focus-visible, .btn:focus-visible {
   outline: 3px solid #a5b4fc;
   outline-offset: 2px;
