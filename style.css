@@ -78,8 +78,18 @@ body {
   outline-offset: 2px;
 }
 
-/* 板块筛选栏:一行,可左右滑动 */
-.filter-bar, .sub-bar {
+/* 板块筛选栏:每行 4 个,所有板块一眼可见 */
+.filter-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 4px 2px 8px;
+  margin-bottom: 4px;
+}
+.filter-bar .chip { width: 100%; padding-left: 4px; padding-right: 4px; text-align: center; }
+
+/* 考公小类:一行,可左右滑动 */
+.sub-bar {
   position: relative;
   display: flex;
   flex-wrap: nowrap;
